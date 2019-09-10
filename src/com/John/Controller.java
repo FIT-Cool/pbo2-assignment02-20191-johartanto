@@ -1,6 +1,7 @@
 package com.John;
 
 import com.John.Entity.Item;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,11 +22,11 @@ public class Controller implements Initializable {
     @FXML
     private TableView<Item> tabelList;
     @FXML
-    private TableColumn col01;
+    private TableColumn<Item,String> col01;
     @FXML
-    private TableColumn col02;
+    private TableColumn<Item,Double> col02;
     @FXML
-    private TableColumn col03;
+    private TableColumn<Item,String> col03;
     @FXML
     private TextField txtName;
     @FXML
@@ -58,5 +59,9 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         items= FXCollections.observableArrayList();
         tabelList.setItems(items);
+        col01.setCellValueFactory(data->{
+            Item i=data.getValue();
+            return new SimpleStringProperty(i.getName());
+        });
     }
 }
