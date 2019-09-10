@@ -1,5 +1,7 @@
 package com.John.Entity;
 
+import javafx.scene.control.TextField;
+
 public class Category {
     private String name;
 

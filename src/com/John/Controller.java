@@ -1,6 +1,9 @@
 package com.John;
 
+import com.John.Entity.Category;
 import com.John.Entity.Item;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +27,7 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Item,String> col01;
     @FXML
-    private TableColumn<Item,Double> col02;
+    private TableColumn<Item,Integer> col02;
     @FXML
     private TableColumn<Item,String> col03;
     @FXML
@@ -34,6 +37,7 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox cbCat;
     private ObservableList<Item> items;
+    private ObservableList<Category> categories;
     @FXML
     private void pressTable(MouseEvent mouseEvent) {
 
@@ -41,6 +45,9 @@ public class Controller implements Initializable {
 
     @FXML
     private void btnSaveCat(ActionEvent actionEvent) {
+        Category c=new Category();
+        c.setName(txtCatname.getText().trim());
+        categories.add(c);
     }
 
     @FXML
@@ -49,6 +56,8 @@ public class Controller implements Initializable {
 
     @FXML
     private void btnReset(ActionEvent actionEvent) {
+        items.removeAll();
+        categories.removeAll();
     }
 
     @FXML
@@ -62,6 +71,11 @@ public class Controller implements Initializable {
         col01.setCellValueFactory(data->{
             Item i=data.getValue();
             return new SimpleStringProperty(i.getName());
+        });
+
+        col03.setCellValueFactory(data->{
+            Item i=data.getValue();
+            return new SimpleObjectProperty<>(i.getCategory().getName());
         });
     }
 }
