@@ -1,5 +1,8 @@
 package com.John.Entity;
-
+/**
+ * author: Johnson Hartanto
+ * NRP: 1772017
+ */
 import javafx.scene.control.TextField;
 
 public class Category {
@@ -12,4 +15,10 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
+
